@@ -29,7 +29,7 @@ func getNAsStr(NAs []NA) string {
 	return strings.Join(texts, ";")
 }
 
-func DeployNAProcess(dpmConf DPMConf, naConf NAConf, na NA) error {
+func DeployNAProcess(na NA, dpmConf DPMConf, naConf NAConf) error {
 	var project = fmt.Sprintf("na_%s_%d", na.Host, na.Port)
 
 	cmd := exec.Command(

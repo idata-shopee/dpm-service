@@ -41,7 +41,7 @@ func main() {
 
 	// deploy NAs
 	for _, na := range naConf.NAs {
-		err = DeployNAProcess(dpmConf, naConf, na)
+		err = DeployNAProcess(na, dpmConf, naConf)
 		if err != nil {
 			panic(err)
 		}
