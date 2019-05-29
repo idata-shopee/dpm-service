@@ -39,7 +39,7 @@ func DeployNAProcess(na NA, dpmConf DPMConf, naConf NAConf) error {
 		"--machineConfig", naConf.NAMachineCnfPath,
 		"--host", na.Host,
 		"--deployDir", path.Join(dpmConf.TargetDir, project),
-		"--srcDir", path.Join(dpmConf.SrcDir, "na"),
+		"--srcDir", path.Join(dpmConf.SrcDir, "na_service"),
 		"--project", project,
 		"--remoteDir", dpmConf.RemoteRoot+"/"+project,
 		"--NAPort", strconv.Itoa(na.Port),
