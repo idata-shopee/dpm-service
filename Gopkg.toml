@@ -35,15 +35,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/idata-shopee/gopcp_service"
-
-[[constraint]]
-  branch = "master"
   name = "github.com/idata-shopee/gopcp_stream"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/idata-shopee/gopool"
 
 [prune]
   go-tests = true
