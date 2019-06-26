@@ -7,7 +7,9 @@ import (
 )
 
 type Worker struct {
-	ServiceType string
+	ServiceType      string
+	DcyTplPath       string
+	DcyTplConfigPath string
 }
 
 type Machine struct {
@@ -23,7 +25,13 @@ type WorkerConf struct {
 
 // deploy worker to target machine
 func DeployWorkerProcess(worker Worker, machine Machine, dpmConf DPMConf, workerConf WorkerConf, naConf NAConf) error {
-	var project = worker.ServiceType
+	project, dcyTplPath, dcyTplConfigPath := worker.ServiceType, worker.DcyTplPath, worker.DcyTplConfigPath
+	if dcyTplPath == "" {
+		dcyTplPath = "./dcy.tpl"
+	}
+	if dcyTplConfigPath == "" {
+		dcyTplConfigPath = "./dcy-cnf.json"
+	}
 
 	cmd := exec.Command(
 		"ideploy",
@@ -35,6 +43,8 @@ func DeployWorkerProcess(worker Worker, machine Machine, dpmConf DPMConf, worker
 		"--srcDir", path.Join(dpmConf.SrcDir, project),
 		"--project", project,
 		"--NAs", getNAsStr(naConf.NAs),
+		"--dcyTplPath", dcyTplPath,
+		"--dcyTplConfigPath", dcyTplConfigPath,
 		"--remoteDir", dpmConf.RemoteRoot+"/"+project,
 	)
 
