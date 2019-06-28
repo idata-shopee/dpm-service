@@ -52,7 +52,7 @@ func main() {
 	// deploy workers
 	var workers []Worker
 	if dpmConf.Only != "" {
-		for _, worker := range workers {
+		for _, worker := range workerConf.Workers {
 			if worker.ServiceType == dpmConf.Only {
 				workers = append(workers, worker)
 				break
