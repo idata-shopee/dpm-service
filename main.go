@@ -64,6 +64,7 @@ func main() {
 
 	for _, worker := range workers {
 		for _, machine := range workerConf.Machines {
+			log.Printf("start deploy %s to %s\n", worker.ServiceType, machine.Host)
 			err = DeployWorkerProcess(worker, machine, dpmConf, workerConf, naConf)
 
 			if err != nil {
