@@ -40,16 +40,29 @@ func main() {
 	}
 
 	// deploy NAs
-	for _, na := range naConf.NAs {
-		err = DeployNAProcess(na, dpmConf, naConf)
-		if err != nil {
-			panic(err)
+	if dpmConf.Only == "" || dpmConf.Only == "na" {
+		for _, na := range naConf.NAs {
+			err = DeployNAProcess(na, dpmConf, naConf)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 
-	// deploy worker to connect each NA
-	// principle: one worker one machine, one worker connect to all NAs.
-	for _, worker := range workerConf.Workers {
+	// deploy workers
+	var workers []Worker
+	if dpmConf.Only != "" {
+		for _, worker := range workers {
+			if worker.ServiceType == dpmConf.Only {
+				workers = append(workers, worker)
+				break
+			}
+		}
+	} else {
+		workers = workerConf.Workers
+	}
+
+	for _, worker := range workers {
 		for _, machine := range workerConf.Machines {
 			err = DeployWorkerProcess(worker, machine, dpmConf, workerConf, naConf)
 
