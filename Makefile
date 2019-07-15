@@ -20,6 +20,6 @@ build:
 	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o stage/bin/dpm_service .
 
 test:
-	@echo "test"
+	@cd ./dpm && go test -v -race
 
 .PHONY: test

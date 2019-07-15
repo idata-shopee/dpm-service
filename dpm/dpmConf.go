@@ -1,4 +1,4 @@
-package main
+package dpm
 
 type DPMConf struct {
 	RemoteRoot     string // remote root dir

@@ -1,4 +1,4 @@
-package main
+package dpm
 
 import (
 	"fmt"
@@ -48,4 +48,17 @@ func DeployNAProcess(na NA, dpmConf DPMConf, naConf NAConf) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
+}
+
+func DeployNAs(dpmConf DPMConf, naConf NAConf) error {
+	// deploy NAs
+	if dpmConf.Only == "" || dpmConf.Only == "na" {
+		for _, na := range naConf.NAs {
+			err := DeployNAProcess(na, dpmConf, naConf)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
