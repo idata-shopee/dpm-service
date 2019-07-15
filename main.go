@@ -45,7 +45,7 @@ func main() {
 	}
 
 	// dpm also is special service which will be a client to NAs.
-	obrero.StartBlockWorker(func(*gopcp_stream.StreamServer) *gopcp.Sandbox {
+	obrero.StartWorkerWithNAs(func(*gopcp_stream.StreamServer) *gopcp.Sandbox {
 		return gopcp.GetSandbox(map[string]*gopcp.BoxFunc{
 			// define service type
 			"getServiceType": gopcp.ToSandboxFun(func(args []interface{}, attachment interface{}, pcpServer *gopcp.PcpServer) (interface{}, error) {
@@ -57,5 +57,7 @@ func main() {
 		Duration:            20 * time.Second,
 		RetryDuration:       20 * time.Second,
 		NAGetClientMaxRetry: 3,
-	})
+	}, naConf.NAs)
+
+	obrero.RunForever()
 }

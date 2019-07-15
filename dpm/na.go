@@ -2,6 +2,7 @@ package dpm
 
 import (
 	"fmt"
+	"github.com/lock-free/obrero"
 	"os"
 	"os/exec"
 	"path"
@@ -9,18 +10,13 @@ import (
 	"strings"
 )
 
-type NA struct {
-	Host string
-	Port int
-}
-
 type NAConf struct {
 	NADeployCnfPath  string
 	NAMachineCnfPath string
-	NAs              []NA
+	NAs              []obrero.NA
 }
 
-func getNAsStr(NAs []NA) string {
+func getNAsStr(NAs []obrero.NA) string {
 	var texts []string
 	for _, na := range NAs {
 		texts = append(texts, fmt.Sprintf("%s:%d", na.Host, na.Port))
@@ -29,7 +25,7 @@ func getNAsStr(NAs []NA) string {
 	return strings.Join(texts, ";")
 }
 
-func DeployNAProcess(na NA, dpmConf DPMConf, naConf NAConf) error {
+func DeployNAProcess(na obrero.NA, dpmConf DPMConf, naConf NAConf) error {
 	var project = fmt.Sprintf("na_%s_%d", na.Host, na.Port)
 
 	cmd := exec.Command(
