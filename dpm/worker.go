@@ -62,13 +62,13 @@ func DeployWorkerProcess(worker Worker, machine Machine, dpmConf DPMConf, worker
 		"--config", workerConf.WorkerDeployCnfPath,
 		"--machineConfig", workerConf.WorkerMachineCnfPath,
 		"--host", machine.Host,
-		"--deployDir", path.Join(dpmConf.TargetDir, project),
-		"--srcDir", path.Join(dpmConf.SrcDir, project),
+		"--deployDir", path.Join(dpmConf.TargetDir, worker.ServiceType),
+		"--srcDir", path.Join(dpmConf.SrcDir, worker.ServiceType),
 		"--project", project,
 		"--NAs", getNAsStr(naConf.NAs),
 		"--dcyTplPath", dcyTplPath,
 		"--dcyTplConfigPath", dcyTplConfigPath,
-		"--remoteDir", dpmConf.RemoteRoot+"/"+project,
+		"--remoteDir", dpmConf.RemoteRoot+"/"+worker.ServiceType,
 	)
 
 	cmd.Stdout = os.Stdout
