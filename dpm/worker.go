@@ -68,7 +68,7 @@ func DeployWorkerProcess(worker Worker, machine Machine, dpmConf DPMConf, worker
 		"--NAs", getNAsStr(naConf.NAs),
 		"--dcyTplPath", dcyTplPath,
 		"--dcyTplConfigPath", dcyTplConfigPath,
-		"--remoteDir", dpmConf.RemoteRoot+"/"+worker.ServiceType,
+		"--remoteDir", dpmConf.RemoteRoot+"/"+project,
 	)
 
 	cmd.Stdout = os.Stdout
