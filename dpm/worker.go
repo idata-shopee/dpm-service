@@ -9,6 +9,7 @@ import (
 
 type Worker struct {
 	ServiceType      string
+	Name             string
 	DcyTplPath       string
 	DcyTplConfigPath string
 }
@@ -42,7 +43,12 @@ func (workerConf *WorkerConf) GetWorkers(only string) []Worker {
 
 // deploy worker to target machine
 func DeployWorkerProcess(worker Worker, machine Machine, dpmConf DPMConf, workerConf WorkerConf, naConf NAConf) error {
-	project, dcyTplPath, dcyTplConfigPath := worker.ServiceType, worker.DcyTplPath, worker.DcyTplConfigPath
+	project := worker.Name
+	if project == "" {
+		project = worker.ServiceType
+	}
+
+	dcyTplPath, dcyTplConfigPath := worker.DcyTplPath, worker.DcyTplConfigPath
 	if dcyTplPath == "" {
 		dcyTplPath = "./dcy.tpl"
 	}
