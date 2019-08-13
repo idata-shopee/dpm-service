@@ -11,27 +11,27 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:5f58a8cc2dbb68949205a7239c078d953784a4baa528a153fa5cd397f85cf7b4"
+  digest = "1:31d1c2ff282b3dde5e54278bc56002c1f036016ccf50b00b4b28fb3c5fd00dc0"
   name = "github.com/lock-free/gopcp"
   packages = ["."]
   pruneopts = "UT"
-  revision = "4bb6ee155fea63ee5b8251602df93991b29f9f55"
+  revision = "3129bdd57c91ebee7d25f7397da0729d0f4c5726"
 
 [[projects]]
   branch = "master"
-  digest = "1:eb5b2d5bb9ad485e35deb033d4fbbd2c7135af2de15708de9d3d461c57ab0554"
+  digest = "1:3df56a4e75dd5e3ba280add186708d87f06c3fe9a204072ae4bf7f24ce07b8e4"
   name = "github.com/lock-free/gopcp_rpc"
   packages = ["."]
   pruneopts = "UT"
-  revision = "6c983b73aa85a68eb2bc3a0016c98bf017ca6b05"
+  revision = "896efd1d554353325d9c504062ff7302da1bc41d"
 
 [[projects]]
   branch = "master"
-  digest = "1:8de4af927c33fc7a525457c2d694490131d37b755d03d504ad838fd0e422d686"
+  digest = "1:497222e41fd3a8373308768b369a40ea4a41b593288794f2eebfaeafcd7bfdd7"
   name = "github.com/lock-free/gopcp_stream"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a77f7b6c17b34b658b81decc64688fb9a2da0db3"
+  revision = "92cf1b44d563677b8dd7ffe1f730cea2916ea07e"
 
 [[projects]]
   branch = "master"
@@ -43,11 +43,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:601a9dbcd1d5cca55b1cb15c30548ec049d22925cb4241febfc791c373e8d0f8"
+  digest = "1:1221fea0b28908013722f0a991746dd6ffe202a15bb21726483bce1cbb45695e"
   name = "github.com/lock-free/obrero"
   packages = ["."]
   pruneopts = "UT"
-  revision = "e999c9a6272d8ba39b42aa8013d81920607f5942"
+  revision = "4fc4951d5efa27ea5fcd0ccb9de32cc426f5d247"
 
 [[projects]]
   digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
@@ -62,7 +62,6 @@
   analyzer-version = 1
   input-imports = [
     "github.com/lock-free/gopcp",
-    "github.com/lock-free/gopcp_rpc",
     "github.com/lock-free/gopcp_stream",
     "github.com/lock-free/obrero",
   ]
