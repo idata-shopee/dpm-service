@@ -1,17 +1,14 @@
-GOPATH := $(shell cd ../../../.. && pwd)
-export GOPATH
+GO111MODULE := on
+export GO111MODULE
 
-init-dep:
-	@dep init
+init:
+	@go mod init
 
-dep:
-	@dep ensure
+clean:
+	@go mod tidy
 
-status-dep:
-	@dep status
-
-update-dep:
-	@dep ensure -update
+update:
+	@go get -u
 
 run-example:
 	@make build && rm -rf example/stage/bin && cp -r ./bin example/stage/bin && cd example && docker-compose up --build

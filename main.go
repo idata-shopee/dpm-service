@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/lock-free/dpm_service/dpm"
-	"github.com/lock-free/gopcp"
-	"github.com/lock-free/gopcp_stream"
-	"github.com/lock-free/obrero"
-	"time"
+	// "github.com/lock-free/gopcp"
+	// "github.com/lock-free/gopcp_stream"
+	"github.com/lock-free/obrero/utils"
+	// "time"
 )
 
 const DPMConfPath = "/data/config.json"
@@ -15,19 +15,19 @@ func main() {
 
 	// read configs
 	dpmConf := dpm.DPMConf{}
-	err = obrero.ReadJson(DPMConfPath, &dpmConf)
+	err = utils.ReadJson(DPMConfPath, &dpmConf)
 	if err != nil {
 		panic(err)
 	}
 
 	naConf := dpm.NAConf{}
-	err = obrero.ReadJson(dpmConf.NAConfPath, &naConf)
+	err = utils.ReadJson(dpmConf.NAConfPath, &naConf)
 	if err != nil {
 		panic(err)
 	}
 
 	workerConf := dpm.WorkerConf{}
-	err = obrero.ReadJson(dpmConf.WorkerConfPath, &workerConf)
+	err = utils.ReadJson(dpmConf.WorkerConfPath, &workerConf)
 	if err != nil {
 		panic(err)
 	}
@@ -45,19 +45,19 @@ func main() {
 	}
 
 	// dpm also is special service which will be a client to NAs.
-	obrero.StartWorkerWithNAs(func(*gopcp_stream.StreamServer) *gopcp.Sandbox {
-		return gopcp.GetSandbox(map[string]*gopcp.BoxFunc{
-			// define service type
-			"getServiceType": gopcp.ToSandboxFun(func(args []interface{}, attachment interface{}, pcpServer *gopcp.PcpServer) (interface{}, error) {
-				return "dpm", nil
-			}),
-		})
-	}, obrero.WorkerStartConf{
-		PoolSize:            2,
-		Duration:            20 * time.Second,
-		RetryDuration:       20 * time.Second,
-		NAGetClientMaxRetry: 3,
-	}, naConf.NAs)
+	// obrero.StartWorkerWithNAs(func(*gopcp_stream.StreamServer) *gopcp.Sandbox {
+	// 	return gopcp.GetSandbox(map[string]*gopcp.BoxFunc{
+	// 		// define service type
+	// 		"getServiceType": gopcp.ToSandboxFun(func(args []interface{}, attachment interface{}, pcpServer *gopcp.PcpServer) (interface{}, error) {
+	// 			return "dpm", nil
+	// 		}),
+	// 	})
+	// }, obrero.WorkerStartConf{
+	// 	PoolSize:            2,
+	// 	Duration:            20 * time.Second,
+	// 	RetryDuration:       20 * time.Second,
+	// 	NAGetClientMaxRetry: 3,
+	// }, naConf.NAs)
 
-	obrero.RunForever()
+	// obrero.RunForever()
 }
