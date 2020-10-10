@@ -1,12 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"github.com/lock-free/dpm_service/dpm"
+	"github.com/lock-free/goklog"
 	// "github.com/lock-free/gopcp"
 	// "github.com/lock-free/gopcp_stream"
 	"github.com/lock-free/obrero/utils"
 	// "time"
 )
+
+var klog = goklog.GetInstance()
 
 const DPMConfPath = "/data/config.json"
 
@@ -20,17 +24,23 @@ func main() {
 		panic(err)
 	}
 
+	klog.LogNormal("dpmConf", fmt.Sprintf("%v", dpmConf))
+
 	naConf := dpm.NAConf{}
 	err = utils.ReadJson(dpmConf.NAConfPath, &naConf)
 	if err != nil {
 		panic(err)
 	}
 
+	klog.LogNormal("naConf", fmt.Sprintf("%v", naConf))
+
 	workerConf := dpm.WorkerConf{}
 	err = utils.ReadJson(dpmConf.WorkerConfPath, &workerConf)
 	if err != nil {
 		panic(err)
 	}
+
+	klog.LogNormal("workerConf", fmt.Sprintf("%v", workerConf))
 
 	// deploy NAs
 	err = dpm.DeployNAs(dpmConf, naConf)
